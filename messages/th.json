@@ -312,6 +312,7 @@
   "store/return-app.return-request-details.page-header.title": "รายละเอียดคำขอส่งคืน",
   "store/return-app.return-request-details.page-header.link-label": "รายการคำขอส่งคืน",
   "store/return-app.return-request-details.order-id.link": "คำสั่ง {orderId}",
+  "store/return-app.return-request-details.order-id.independent": "Independent Return",
   "store/return-app.return-request-details.current-status.request-id": "<b>รหัสอ้างอิง:</b> {id}",
   "store/return-app.return-request-details.current-status.status": "<b>สถานะ:</b>",
   "admin/return-app.return-request-list.table-data.requestId.tooltip": "ลูกค้าสามารถมองเห็นรหัสคำขอของตนได้ในรายละเอียดคำสั่งซื้อ",

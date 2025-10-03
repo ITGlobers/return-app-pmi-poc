@@ -312,6 +312,7 @@
   "store/return-app.return-request-details.page-header.title": "Подробности за заявката за връщане",
   "store/return-app.return-request-details.page-header.link-label": "Списък със заявки за връщане",
   "store/return-app.return-request-details.order-id.link": "Поръчка {orderId}",
+  "store/return-app.return-request-details.order-id.independent": "Independent Return",
   "store/return-app.return-request-details.current-status.request-id": "<b>ИД на заявката:</b> {id}",
   "store/return-app.return-request-details.current-status.status": "<b>Статус:</b>",
   "admin/return-app.return-request-list.table-data.requestId.tooltip": "Клиентите виждат ИД на заявката си вътре в подробностите за заявката",

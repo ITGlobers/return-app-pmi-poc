@@ -312,6 +312,7 @@
   "store/return-app.return-request-details.page-header.title": "Szczegóły żądania zwrotu",
   "store/return-app.return-request-details.page-header.link-label": "Lista żądań zwrotu",
   "store/return-app.return-request-details.order-id.link": "Zamówienie {orderId}",
+  "store/return-app.return-request-details.order-id.independent": "Independent Return",
   "store/return-app.return-request-details.current-status.request-id": "<b>Identyfikator żądania:</b>{id}",
   "store/return-app.return-request-details.current-status.status": "<b>Status:</b>",
   "admin/return-app.return-request-list.table-data.requestId.tooltip": "Klienci mogą zobaczyć identyfikator żądania w szczegółach żądania",

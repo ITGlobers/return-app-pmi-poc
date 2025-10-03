@@ -312,6 +312,7 @@
   "store/return-app.return-request-details.page-header.title": "Dados da solicitação de devolução",
   "store/return-app.return-request-details.page-header.link-label": "Relação das solicitações de devolução",
   "store/return-app.return-request-details.order-id.link": "Pedido {orderId}",
+  "store/return-app.return-request-details.order-id.independent": "Independent Return",
   "store/return-app.return-request-details.current-status.request-id": "<b>ID da solicitação:</b> {id}",
   "store/return-app.return-request-details.current-status.status": "<b>Status:</b>",
   "admin/return-app.return-request-list.table-data.requestId.tooltip": "Os clientes podem ver o ID da solicitação nos dados da própria solicitação",

@@ -16,6 +16,13 @@ export const OrderLink = () => {
   const isAdmin = domain === 'admin'
   const { orderId } = data.returnRequestDetails
 
+  // Independent returns don't have orderId
+  if (!orderId) {
+    return (
+      <FormattedMessage id="store/return-app.return-request-details.order-id.independent" />
+    )
+  }
+
   const targetHref = isAdmin
     ? `/admin/checkout/#/orders/${orderId}`
     : `/account/#/orders/${orderId}`

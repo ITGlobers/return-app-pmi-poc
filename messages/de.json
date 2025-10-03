@@ -312,6 +312,7 @@
   "store/return-app.return-request-details.page-header.title": "Details zur Rückgabeanfrage",
   "store/return-app.return-request-details.page-header.link-label": "Rückgabeanfrage Liste",
   "store/return-app.return-request-details.order-id.link": "Bestellung {orderId}",
+  "store/return-app.return-request-details.order-id.independent": "Independent Return",
   "store/return-app.return-request-details.current-status.request-id": "<b>Anfrage-ID:</b> {id}",
   "store/return-app.return-request-details.current-status.status": "<b>Status:</b>",
   "admin/return-app.return-request-list.table-data.requestId.tooltip": "Kunden können ihre Anfrage-ID in den Anfragedetails sehen",

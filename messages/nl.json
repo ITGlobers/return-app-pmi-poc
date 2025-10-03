@@ -312,6 +312,7 @@
   "store/return-app.return-request-details.page-header.title": "Gegevens retourverzoek",
   "store/return-app.return-request-details.page-header.link-label": "Lijst retouraanvraag",
   "store/return-app.return-request-details.order-id.link": "Bestelling {orderId}\"",
+  "store/return-app.return-request-details.order-id.independent": "Independent Return",
   "store/return-app.return-request-details.current-status.request-id": "<b>Aanvraag-ID:</b> {id}",
   "store/return-app.return-request-details.current-status.status": "<b>Status:</b>",
   "admin/return-app.return-request-list.table-data.requestId.tooltip": "Klanten kunnen hun aanvraag-ID zien in de aanvraaggegevens",
