@@ -18,11 +18,17 @@ import { OMS_RETURN_REQUEST_CONFIRMATION_TEMPLATE } from '../utils/templates'
 import type { ConfirmationMailData } from '../typings/mailClient'
 import { getCustomerEmail } from '../utils/getCostumerEmail'
 import { validateItemCondition } from '../utils/validateItemCondition'
+import { createIndependentReturnRequestService } from './createIndependentReturnRequestService'
 
 export const createReturnRequestService = async (
   ctx: Context,
   args: ReturnRequestInput
 ): Promise<ReturnRequestCreated> => {
+  // PMI Feature: Route to independent return service if independentReturn flag is true
+  if (args.independentReturn) {
+    return createIndependentReturnRequestService(ctx, args)
+  }
+
   const {
     clients: {
       oms,

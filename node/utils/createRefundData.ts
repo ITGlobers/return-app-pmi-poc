@@ -44,6 +44,13 @@ export const createRefundData = ({
       )
     }
 
+    // Guard: orderItemIndex should always exist in order-based returns
+    if (orderItemIndex === undefined || orderItemIndex === null) {
+      throw new UserInputError(
+        'createRefundData should not be called for independent returns without orderItemIndex'
+      )
+    }
+
     items.push({
       orderItemIndex,
       id,

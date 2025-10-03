@@ -65,6 +65,12 @@ export const canReturnAllItems = async (
 
   for (const itemToReturn of itemsToReturn) {
     const { quantity, orderItemIndex } = itemToReturn
+
+    // Skip validation for independent returns (orderItemIndex is undefined)
+    if (orderItemIndex === undefined || orderItemIndex === null) {
+      continue
+    }
+
     const availableToReturn = itemAvailableMap.get(orderItemIndex)
 
     // if quantity available to return is undefined or zero or less than the quantity requested, throw error

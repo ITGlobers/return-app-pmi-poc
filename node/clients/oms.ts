@@ -28,7 +28,7 @@ type InputInvoiceFields = Omit<
 interface OrderListParams {
   clientEmail: string
   orderBy: 'creationDate,desc'
-  f_status: 'invoiced'
+  f_status?: 'invoiced'
   f_creationDate: string
   page: number
   per_page: 10

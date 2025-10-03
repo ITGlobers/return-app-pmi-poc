@@ -1,0 +1,30 @@
+"""
+ProductSummary: Represents a product that the user has purchased and can return independently
+"""
+type ProductSummary {
+  skuId: String!
+  name: String!
+  imageUrl: String!
+  """
+  currentPrice: Current selling price from catalog (in cents)
+  """
+  currentPrice: Int!
+  productId: String!
+  refId: String!
+  sellerId: String!
+  sellerName: String!
+  """
+  purchaseHistory: List of orders where this SKU was purchased by the user
+  """
+  purchaseHistory: [PurchaseHistoryItem!]!
+}
+
+"""
+PurchaseHistoryItem: Metadata about a specific purchase of a SKU
+"""
+type PurchaseHistoryItem {
+  orderId: String!
+  purchaseDate: String!
+  quantityPurchased: Int!
+  pricePaid: Int!
+}

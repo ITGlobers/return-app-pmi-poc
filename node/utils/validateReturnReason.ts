@@ -8,7 +8,7 @@ import { isWithinMaxDaysToReturn } from './dateHelpers'
 
 export const validateReturnReason = (
   itemsToReturn: ReturnRequestItemInput[],
-  orderCreationDate: string,
+  orderCreationDate: string | null,
   customReturnReasons?: CustomReturnReason[] | null
 ) => {
   itemsToReturn.forEach(({ returnReason: { reason }, orderItemIndex }) => {
@@ -54,7 +54,8 @@ export const validateReturnReason = (
       )
     }
 
-    if (!isWithinMaxDaysToReturn(orderCreationDate, maxDayForReason)) {
+    // Skip date validation for independent returns (orderCreationDate is null)
+    if (orderCreationDate && !isWithinMaxDaysToReturn(orderCreationDate, maxDayForReason)) {
       throw new ResolverError(
         `Order Item index ${orderItemIndex} is not within max days for the reason ${reason}`,
         400

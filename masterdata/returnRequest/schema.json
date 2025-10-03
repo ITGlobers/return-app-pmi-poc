@@ -1,7 +1,10 @@
 {
   "properties": {
     "orderId": {
-      "type": "string"
+      "type": ["string", "null"]
+    },
+    "independentReturn": {
+      "type": "boolean"
     },
     "refundableAmount": {
       "type": "integer"
@@ -106,7 +109,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "orderItemIndex": { "type": "integer" },
+          "orderItemIndex": { "type": ["integer", "null"] },
           "id": { "type": "string" },
           "name": { "type": "string" },
           "localizedName": { "type": ["string", "null"] },
@@ -144,7 +147,6 @@
           }
         },
         "required": [
-          "orderItemIndex",
           "id",
           "name",
           "sellingPrice",
@@ -279,7 +281,6 @@
     }
   },
   "required": [
-    "orderId",
     "refundableAmount",
     "sequenceNumber",
     "status",

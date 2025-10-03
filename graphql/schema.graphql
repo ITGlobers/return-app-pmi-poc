@@ -30,6 +30,17 @@ type Query {
     @withUserProfile
     @cacheControl(scope: PRIVATE, maxAge: SHORT)
   nearestPickupPoints(lat: String!, long: String!): NearPickupPointQueryResponse
+  """
+  productsAvailableForIndependentReturn: Search products that the user has purchased in any previous order.
+  Returns only SKUs that the user actually bought, enabling independent returns without orderId.
+  PMI Feature: Allows returns decoupled from specific orders.
+  """
+  productsAvailableForIndependentReturn(
+    searchTerm: String
+    storeUserEmail: String
+  ): [ProductSummary!]!
+    @withUserProfile
+    @cacheControl(scope: PRIVATE, maxAge: SHORT)
 }
 
 type Mutation {

@@ -14,6 +14,58 @@ export const GET_SKU_TRANSLATION_QUERY = `
   }
 `
 
+export const GET_PRODUCT_QUERY = `
+  query getProduct($identifier: ProductUniqueIdentifier) {
+    product(identifier: $identifier) {
+      productId
+      productName
+      productReference
+      items {
+        itemId
+        name
+        nameComplete
+        images {
+          imageUrl
+        }
+        sellers {
+          sellerId
+          sellerName
+          commertialOffer {
+            Price
+            ListPrice
+          }
+        }
+      }
+    }
+  }
+`
+
+export const GET_SKU_QUERY = `
+  query getSKU($identifier: SKUUniqueIdentifier) {
+    sku(identifier: $identifier) {
+      itemId
+      name
+      nameComplete
+      images {
+        imageUrl
+      }
+      product {
+        productId
+        productName
+        productReference
+      }
+      sellers {
+        sellerId
+        sellerName
+        commertialOffer {
+          Price
+          ListPrice
+        }
+      }
+    }
+  }
+`
+
 /**
  * A slimmer version of the original node client.
  * We only require specific fields when translating.
@@ -49,5 +101,40 @@ export class CatalogGQL extends AppGraphQLClient {
     })
 
     return data?.sku.name
+  }
+
+  public getProductBySKU = async (skuId: string) => {
+    const variables = {
+      identifier: {
+        field: 'id',
+        value: skuId,
+      },
+    }
+
+    const { data } = await this.graphql.query<any, typeof variables>({
+      inflight: true,
+      query: GET_SKU_QUERY,
+      variables,
+    })
+
+    if (!data?.sku) {
+      return null
+    }
+
+    // Transform SKU response to match product structure
+    return {
+      productId: data.sku.product?.productId,
+      productName: data.sku.product?.productName,
+      productReference: data.sku.product?.productReference,
+      items: [
+        {
+          itemId: data.sku.itemId,
+          name: data.sku.name,
+          nameComplete: data.sku.nameComplete,
+          images: data.sku.images,
+          sellers: data.sku.sellers,
+        },
+      ],
+    }
   }
 }

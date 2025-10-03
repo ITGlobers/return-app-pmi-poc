@@ -1,5 +1,9 @@
 input ReturnRequestInput {
-  orderId: String!
+  orderId: String
+  """
+  independentReturn: Set to true when creating a return without an existing order (PMI feature)
+  """
+  independentReturn: Boolean
   items: [ReturnRequestItemInput!]!
   customerProfileData: CustomerProfileDataInput!
   pickupReturnData: PickupReturnDataInput!
@@ -9,8 +13,19 @@ input ReturnRequestInput {
 }
 
 input ReturnRequestItemInput {
-  orderItemIndex: Int!
+  """
+  orderItemIndex: Required for order-based returns, optional for independent returns
+  """
+  orderItemIndex: Int
+  """
+  skuId: Required for independent returns, allows selecting SKU directly from catalog
+  """
+  skuId: String
   quantity: Int!
+  """
+  sellingPrice: For independent returns, price can be specified or fetched from catalog
+  """
+  sellingPrice: Int
   condition: ItemCondition
   returnReason: ReturnReasonInput!
 }
@@ -67,7 +82,8 @@ enum RefundPaymentMethod {
 
 type ReturnRequestResponse {
   id: ID!
-  orderId: String!
+  orderId: String
+  independentReturn: Boolean
   refundableAmount: Int!
   sequenceNumber: String!
   createdIn: String!
@@ -121,7 +137,7 @@ type RefundPaymentData {
 }
 
 type ReturnRequestItem {
-  orderItemIndex: Int!
+  orderItemIndex: Int
   quantity: Int!
   condition: ItemCondition!
   returnReason: ReturnReason!

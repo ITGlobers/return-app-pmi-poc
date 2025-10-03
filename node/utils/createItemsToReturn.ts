@@ -62,6 +62,13 @@ export const createItemsToReturn = async ({
 }): Promise<ReturnRequestItem[]> => {
   return Promise.all(
     itemsToReturn.map(async (item) => {
+      // Guard for independent returns (should not call this function)
+      if (item.orderItemIndex === undefined || item.orderItemIndex === null) {
+        throw new UserInputError(
+          'createItemsToReturn should not be called for independent returns'
+        )
+      }
+
       const orderItem = orderItems[item.orderItemIndex]
 
       if (!orderItem) {
