@@ -31,6 +31,14 @@ export const StoreReturnList = () => {
         variation="primary"
         size="small"
         disabled={loading}
+        href="#/my-returns/add-individual"
+      >
+        New Individual Request
+      </Button>
+      <Button
+        variation="primary"
+        size="small"
+        disabled={loading}
         href="#/my-returns/add"
       >
         <FormattedMessage id="store/return-app.return-request-list.page-header.cta" />
