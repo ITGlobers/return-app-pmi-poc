@@ -1,4 +1,4 @@
-import type { CategoryInfo } from 'vtex.return-app'
+import type { CategoryInfo } from 'baranda.return-app-pmi'
 
 const transformCategoryTree = (
   categoryTree: CategoryTree[],

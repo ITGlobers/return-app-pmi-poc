@@ -7,7 +7,7 @@ import type {
   ProcessedItem,
   ReturnAppSettings,
   ReturnRequest,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 import { getInvoicedItems } from './getInvoicedItems'
 import { mapItemIndexAndQuantity } from './mapItemIndexAndQuantity'

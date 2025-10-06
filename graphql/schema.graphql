@@ -1,6 +1,8 @@
 type Query {
   returnAppSettings: ReturnAppSettings @cacheControl(maxAge: ZERO)
+  @auth(scope: PUBLIC)
   categoryTreeName: [CategoryInfo]! @cacheControl(maxAge: MEDIUM)
+  @auth(scope: PUBLIC)
   """
   storeUserEmail: If not passed, resolver will try to parse it from session cookie.
   """
@@ -10,6 +12,7 @@ type Query {
   ): OrdersToReturnList
     @withUserProfile
     @cacheControl(scope: PRIVATE, maxAge: SHORT)
+    @auth(scope: PUBLIC)
   """
   storeUserEmail: If not passed, resolver will try to parse it from session cookie.
   """
@@ -19,9 +22,11 @@ type Query {
   ): OrderToReturnSummary
     @withUserProfile
     @cacheControl(scope: PRIVATE, maxAge: SHORT)
+    @auth(scope: PUBLIC)
   returnRequest(requestId: ID!): ReturnRequestResponse
     @withUserProfile
     @cacheControl(scope: PRIVATE, maxAge: SHORT)
+    @auth(scope: PUBLIC)
   returnRequestList(
     filter: ReturnRequestFilters
     page: Int!
@@ -29,7 +34,9 @@ type Query {
   ): ReturnRequestList
     @withUserProfile
     @cacheControl(scope: PRIVATE, maxAge: SHORT)
+    @auth(scope: PUBLIC)
   nearestPickupPoints(lat: String!, long: String!): NearPickupPointQueryResponse
+  @auth(scope: PUBLIC)
   """
   productsAvailableForIndependentReturn: Search products that the user has purchased in any previous order.
   Returns only SKUs that the user actually bought, enabling independent returns without orderId.
@@ -41,16 +48,20 @@ type Query {
   ): [ProductSummary!]!
     @withUserProfile
     @cacheControl(scope: PRIVATE, maxAge: SHORT)
+    @auth(scope: PUBLIC)
 }
 
 type Mutation {
   createReturnRequest(returnRequest: ReturnRequestInput!): returnRequestCreated
     @withUserProfile
+    @auth(scope: PUBLIC)
   saveReturnAppSettings(settings: ReturnAppSettingsInput!): Boolean
+  @auth(scope: PUBLIC)
   updateReturnRequestStatus(
     requestId: ID!
     status: Status!
     comment: ReturnRequestCommentInput
     refundData: RefundDataInput
   ): ReturnRequestResponse @withUserProfile
+  @auth(scope: PUBLIC)
 }

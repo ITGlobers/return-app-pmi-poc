@@ -1,4 +1,4 @@
-import type { CustomReturnReason } from 'vtex.return-app'
+import type { CustomReturnReason } from 'baranda.return-app-pmi'
 
 import { isWithinMaxDaysToReturn } from '../../../node/utils/dateHelpers'
 

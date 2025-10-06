@@ -1,5 +1,5 @@
 import { ResolverError } from '@vtex/api'
-import type { ProductSummary } from 'vtex.return-app'
+import type { ProductSummary } from 'baranda.return-app-pmi'
 
 import { SETTINGS_PATH } from '../utils/constants'
 import { getCurrentDate, substractDays } from '../utils/dateHelpers'

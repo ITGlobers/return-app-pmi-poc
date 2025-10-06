@@ -6,7 +6,7 @@ import type {
   RefundPaymentDataInput,
   PaymentType,
   RefundPaymentMethod,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { Input, RadioGroup } from 'vtex.styleguide'
 
 import { useStoreSettings } from '../../hooks/useStoreSettings'

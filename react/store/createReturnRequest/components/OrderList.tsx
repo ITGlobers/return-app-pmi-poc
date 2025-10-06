@@ -4,7 +4,7 @@ import type {
   OrdersToReturnList,
   OrderToReturnSummary,
   QueryOrdersAvailableToReturnArgs,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { FormattedMessage, FormattedDate } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime/'
 import { Table, Button } from 'vtex.styleguide'

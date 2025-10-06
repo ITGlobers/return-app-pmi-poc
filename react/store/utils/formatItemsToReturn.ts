@@ -1,4 +1,4 @@
-import type { OrderToReturnSummary } from 'vtex.return-app'
+import type { OrderToReturnSummary } from 'baranda.return-app-pmi'
 
 export function formatItemsToReturn(
   orderToReturn: OrderToReturnSummary

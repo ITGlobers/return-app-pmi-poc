@@ -2,7 +2,7 @@ import type {
   Status,
   RefundStatusData,
   RefundStatusComment,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { defineMessages } from 'react-intl'
 
 const statusSequence: Status[] = [

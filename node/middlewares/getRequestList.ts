@@ -1,4 +1,4 @@
-import type { Status } from 'vtex.return-app'
+import type { Status } from 'baranda.return-app-pmi'
 
 import { returnRequestListService } from '../services/returnRequestListService'
 

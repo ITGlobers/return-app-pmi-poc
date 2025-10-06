@@ -6,7 +6,7 @@ import type {
   RefundDataInput,
   ReturnRequestResponse,
   MutationUpdateReturnRequestStatusArgs,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { useMutation } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
 

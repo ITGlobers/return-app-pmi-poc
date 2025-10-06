@@ -5,7 +5,7 @@ import type {
   QueryNearestPickupPointsArgs,
   NearPickupPointQueryResponse,
   PickupPoint,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { useCssHandles } from 'vtex.css-handles'
 import { Dropdown, Spinner } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'

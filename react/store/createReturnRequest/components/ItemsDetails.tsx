@@ -1,5 +1,5 @@
 import React from 'react'
-import type { ItemCondition } from 'vtex.return-app'
+import type { ItemCondition } from 'baranda.return-app-pmi'
 import { NumericStepper, Box } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 import { FormattedMessage } from 'react-intl'

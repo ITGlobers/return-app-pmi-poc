@@ -1,7 +1,7 @@
 import type {
   MutationUpdateReturnRequestStatusArgs,
   ReturnRequest,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 import { updateRequestStatusService } from '../services/updateRequestStatusService'
 

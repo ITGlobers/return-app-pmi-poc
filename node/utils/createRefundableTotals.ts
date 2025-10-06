@@ -1,4 +1,4 @@
-import type { RefundableAmountTotal, ReturnRequest } from 'vtex.return-app'
+import type { RefundableAmountTotal, ReturnRequest } from 'baranda.return-app-pmi'
 import type { ItemTotal } from '@vtex/clients'
 
 export const createRefundableTotals = (

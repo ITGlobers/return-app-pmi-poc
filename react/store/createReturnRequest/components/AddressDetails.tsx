@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl'
 import { Input, Tooltip, Toggle, IconInfo } from 'vtex.styleguide'
-import type { AddressType, ShippingData } from 'vtex.return-app'
+import type { AddressType, ShippingData } from 'baranda.return-app-pmi'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { useReturnRequest } from '../../hooks/useReturnRequest'

@@ -4,7 +4,7 @@ import type {
   ReturnRequest,
   ReturnRequestCommentInput,
   Status,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 export const createOrUpdateStatusPayload = ({
   refundStatusData,

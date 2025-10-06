@@ -3,7 +3,7 @@ import type {
   ReturnRequest,
   Status,
   RefundItemInput,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import {
   ResolverError,
   ForbiddenError,

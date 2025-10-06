@@ -1,7 +1,7 @@
 import type {
   QueryNearestPickupPointsArgs,
   NearPickupPointQueryResponse,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 export const nearestPickupPoints = async (
   _: unknown,

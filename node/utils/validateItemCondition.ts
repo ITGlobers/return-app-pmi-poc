@@ -1,4 +1,4 @@
-import type { ReturnRequestItemInput } from 'vtex.return-app'
+import type { ReturnRequestItemInput } from 'baranda.return-app-pmi'
 import { UserInputError } from '@vtex/api'
 
 export const validateItemCondition = (

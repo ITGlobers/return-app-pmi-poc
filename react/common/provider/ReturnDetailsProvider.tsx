@@ -5,7 +5,7 @@ import { useQuery } from 'react-apollo'
 import type {
   ReturnRequestResponse,
   QueryReturnRequestArgs,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 import GET_REQUEST_DETAILS from '../graphql/getRequestDetails.gql'
 

@@ -4,7 +4,7 @@ import type {
   RefundPaymentDataInput,
   ReturnRequestItemInput,
   Maybe,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 

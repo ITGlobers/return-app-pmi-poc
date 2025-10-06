@@ -3,7 +3,7 @@ import type {
   PaymentTypeInput,
   CustomReturnReasonInput,
   PaymentOptions,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 export const validatePaymentOptions = (
   paymentOptions: PaymentOptionsInput

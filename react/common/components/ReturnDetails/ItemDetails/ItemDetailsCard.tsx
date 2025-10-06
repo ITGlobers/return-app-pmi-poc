@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
 import React from 'react'
 import { Box } from 'vtex.styleguide'
-import type { ReturnRequestItem } from 'vtex.return-app'
+import type { ReturnRequestItem } from 'baranda.return-app-pmi'
 import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 

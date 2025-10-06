@@ -1,5 +1,5 @@
 import type { ClientProfileDetail } from '@vtex/clients'
-import type { ClientProfileData } from 'vtex.return-app'
+import type { ClientProfileData } from 'baranda.return-app-pmi'
 
 export const transformOrderClientProfileData = (
   clientProfileData: ClientProfileDetail,

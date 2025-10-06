@@ -1,4 +1,4 @@
-import type { OrderToReturnValidation } from 'vtex.return-app'
+import type { OrderToReturnValidation } from 'baranda.return-app-pmi'
 
 import type {
   ReturnRequestConfirmation,

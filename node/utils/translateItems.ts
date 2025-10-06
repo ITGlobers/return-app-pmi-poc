@@ -1,4 +1,4 @@
-import type { InvoicedItem } from 'vtex.return-app'
+import type { InvoicedItem } from 'baranda.return-app-pmi'
 
 import type { CatalogGQL } from '../clients/catalogGQL'
 

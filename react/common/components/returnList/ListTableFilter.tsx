@@ -6,7 +6,7 @@ import type {
   QueryReturnRequestListArgs,
   ReturnRequestList,
   Status,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import type { ApolloQueryResult } from 'apollo-client'
 import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'

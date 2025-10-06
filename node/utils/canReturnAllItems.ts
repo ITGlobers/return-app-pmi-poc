@@ -4,7 +4,7 @@ import type {
   ReturnRequestItemInput,
   ReturnAppSettings,
   ReturnRequest,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { ResolverError } from '@vtex/api'
 
 import { createOrdersToReturnSummary } from './createOrdersToReturnSummary'

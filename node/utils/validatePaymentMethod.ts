@@ -1,4 +1,4 @@
-import type { RefundPaymentDataInput, PaymentOptions } from 'vtex.return-app'
+import type { RefundPaymentDataInput, PaymentOptions } from 'baranda.return-app-pmi'
 import { ResolverError } from '@vtex/api'
 
 import { isValidIBANNumber } from './isValidIBANNumber'

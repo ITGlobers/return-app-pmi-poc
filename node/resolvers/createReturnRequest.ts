@@ -1,4 +1,4 @@
-import type { MutationCreateReturnRequestArgs } from 'vtex.return-app'
+import type { MutationCreateReturnRequestArgs } from 'baranda.return-app-pmi'
 
 import { createReturnRequestService } from '../services/createReturnRequestService'
 

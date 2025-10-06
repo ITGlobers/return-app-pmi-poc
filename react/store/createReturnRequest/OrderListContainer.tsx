@@ -5,7 +5,7 @@ import type {
   OrdersToReturnList,
   OrderToReturnSummary,
   QueryOrdersAvailableToReturnArgs,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 import { ContentWrapper, BaseLoading } from 'vtex.my-account-commons'
 import { FormattedMessage } from 'react-intl'
 

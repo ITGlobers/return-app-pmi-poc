@@ -1,7 +1,7 @@
 import type {
   ReturnAppSettings,
   MutationSaveReturnAppSettingsArgs,
-} from 'vtex.return-app'
+} from 'baranda.return-app-pmi'
 
 import {
   validateMaxDaysCustomReasons,

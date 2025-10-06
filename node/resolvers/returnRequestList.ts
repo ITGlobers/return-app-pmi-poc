@@ -1,4 +1,4 @@
-import type { QueryReturnRequestListArgs } from 'vtex.return-app'
+import type { QueryReturnRequestListArgs } from 'baranda.return-app-pmi'
 
 import { returnRequestListService } from '../services/returnRequestListService'
 

@@ -1,6 +1,6 @@
 import { IOClients, Sphinx, VBase } from '@vtex/api'
 import { vbaseFor, masterDataFor } from '@vtex/clients'
-import { ReturnAppSettings, ReturnRequest } from 'vtex.return-app'
+import { ReturnAppSettings, ReturnRequest } from 'baranda.return-app-pmi'
 
 import { Catalog } from './catalog'
 import { OMSCustom as OMS } from './oms'
