@@ -27,9 +27,7 @@ const ReturnListSchema = () => {
     properties: {
       ...(isAdmin && {
         id: {
-          title: (
-            <FormattedMessage id="store/return-app.return-request-list.table-data.requestId" />
-          ),
+          title: "test",
           headerRenderer({ title }) {
             return (
               <div className="flex items-center">

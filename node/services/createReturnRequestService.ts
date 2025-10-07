@@ -240,6 +240,7 @@ export const createReturnRequestService = async (
   try {
     rmaDocument = await returnRequestClient.save({
       orderId,
+      independentReturn: false,
       refundableAmount,
       sequenceNumber,
       status: 'new',

@@ -4,7 +4,7 @@
       "type": ["string", "null"]
     },
     "independentReturn": {
-      "type": "boolean"
+      "type": ["boolean", "null"]
     },
     "refundableAmount": {
       "type": "integer"
@@ -299,6 +299,7 @@
     "id",
     "createdIn",
     "orderId",
+    "independentReturn",
     "sequenceNumber",
     "dateSubmitted",
     "status"
@@ -307,6 +308,7 @@
     "id",
     "createdIn",
     "orderId",
+    "independentReturn",
     "customerProfileData",
     "status",
     "sequenceNumber",

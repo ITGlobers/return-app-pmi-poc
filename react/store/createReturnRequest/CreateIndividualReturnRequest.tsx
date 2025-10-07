@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import type { RouteComponentProps } from 'react-router'
 import { useQuery } from 'react-apollo'
-import type {
-  OrderToReturnSummary,
-  QueryOrderToReturnSummaryArgs,
-} from 'baranda.return-app-pmi'
 import { PageHeader, PageBlock } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
 
 import { StoreSettingsPovider } from '../provider/StoreSettingsProvider'
 import { OrderToReturnProvider } from '../provider/OrderToReturnProvider'
-import { ReturnDetails } from './components/ReturnDetails'
-import { ConfirmAndSubmit } from './components/ConfirmAndSubmit'
 import { useReturnRequest } from '../hooks/useReturnRequest'
 import PRODUCTS_AVAILABLE_FOR_INDEPENDENT_RETURN from './graphql/getProductsAvailableForIndependentReturn.gql'
-import ORDER_TO_RETURN_SUMMARY from './graphql/getOrderToReturnSummary.gql'
-import { formatItemsToReturn } from '../utils/formatItemsToReturn'
-import { setInitialPickupAddress } from '../utils/setInitialPickupAddress'
 import { useStoreSettings } from '../hooks/useStoreSettings'
 import { OrderDetailsLoader } from './components/loaders/OrderDetailsLoader'
 import { ReturnIndividualDetails } from './components/ReturnIndividualDetail'
@@ -38,8 +29,6 @@ const createPageHeaderProps = (navigate: any) => {
 }
 
 export const CreateIndividualReturnRequest = (props: RouteProps) => {
-
-  const [page, setPage] = useState<Page>('form-details')
   const [items, setItemsToReturn] = useState<ItemToReturn[]>([])
 
   const {
@@ -47,9 +36,8 @@ export const CreateIndividualReturnRequest = (props: RouteProps) => {
   } = useReturnRequest()
 
   const { data: storeSettings } = useStoreSettings()
-  const { paymentOptions, options } = storeSettings ?? {}
+  const { paymentOptions } = storeSettings ?? {}
   const { enablePaymentMethodSelection } = paymentOptions ?? {}
-  const { enableHighlightFormMessage } = options ?? {}
 
   const { navigate } = useRuntime()
 
@@ -108,8 +96,8 @@ export const CreateIndividualReturnRequest = (props: RouteProps) => {
     // })
   }, [data, storeSettings, updateReturnRequest, enablePaymentMethodSelection])
 
-  const handlePageChange = (selectedPage: Page) => {
-    setPage(selectedPage)
+  const handlePageChange = (_selectedPage: Page) => {
+    // TODO: Implement page navigation for independent returns
   }
 
   return (
