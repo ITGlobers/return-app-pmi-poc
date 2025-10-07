@@ -289,7 +289,6 @@
     "pickupReturnData",
     "refundPaymentData",
     "items",
-    "refundData",
     "refundStatusData",
     "dateSubmitted",
     "cultureInfoData"
