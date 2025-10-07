@@ -1,7 +1,7 @@
 {
   "vendor": "baranda",
   "name": "return-app-pmi",
-  "version": "3.12.1",
+  "version": "4.0.0",
   "title": "Return app",
   "description": "Return app",
   "dependencies": {
