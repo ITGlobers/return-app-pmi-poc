@@ -1,6 +1,6 @@
 query getGeoCoordinates($orderId: ID!) {
   orderToReturnSummary(orderId: $orderId)
-    @context(provider: "vtex.return-app") {
+    @context(provider: "baranda.return-app-pmi") {
     shippingData {
       geoCoordinates
     }

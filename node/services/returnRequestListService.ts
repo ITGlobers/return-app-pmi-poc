@@ -107,6 +107,7 @@ export const returnRequestListService = async (
     : [
         'id',
         'orderId',
+        'independentReturn',
         'sequenceNumber',
         'createdIn',
         'status',

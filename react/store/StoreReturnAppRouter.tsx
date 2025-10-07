@@ -8,6 +8,7 @@ import {
 import {
   OrderListContainer,
   CreateReturnRequestContainer,
+  CreateIndividualReturnRequestContainer
 } from './StoreMyReturnsAdd'
 
 export const AppRouter = () => {
@@ -20,6 +21,7 @@ export const AppRouter = () => {
         component={StoreReturnDetailsContainer}
       />
       <Route exact path="/my-returns/add" component={OrderListContainer} />
+      <Route exact path="/my-returns/add-individual" component={CreateIndividualReturnRequestContainer} />
       <Route
         exact
         path="/my-returns/add/:orderId"

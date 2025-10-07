@@ -1,0 +1,17 @@
+query orderToReturnIndividualSummary {
+  productsAvailableForIndependentReturn {
+    skuId
+    name
+    imageUrl
+    currentPrice
+    productId
+    sellerId
+    sellerName
+    purchaseHistory {
+      orderId
+      purchaseDate
+      quantityPurchased
+      pricePaid
+    }
+  }
+}
