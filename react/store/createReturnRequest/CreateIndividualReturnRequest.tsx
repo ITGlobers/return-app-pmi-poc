@@ -10,6 +10,7 @@ import { AddressDetails } from './components/IndividualReturn/AddressDetails'
 import { UserCommentDetails } from './components/IndividualReturn/UserCommentDetails'
 import { TermsAndConditions } from './components/IndividualReturn/TermsAndConditions'
 import styles from './components/IndividualReturn/styles.css'
+import { PaymentMethods } from './components/IndividualReturn/PaymentMethods'
 
 export const CreateIndividualReturnRequest = () => {
 
@@ -21,6 +22,8 @@ export const CreateIndividualReturnRequest = () => {
     contactInformation,
     shippingData,
     userComment,
+    paymentData,
+    enablePaymentMethodSelection,
     areTermsAccepted,
     errors,
     returnData,
@@ -32,6 +35,9 @@ export const CreateIndividualReturnRequest = () => {
     handleContactInputChange,
     handleShippingInputChange,
     handleCommentChange,
+    paymentMethods,
+    handleRefundPaymentChange,
+    handleBankDetailsChange,
     handlesTermsAndConditions,
     createReturnRequest,
   } = useIndividualListReturn()
@@ -86,9 +92,14 @@ export const CreateIndividualReturnRequest = () => {
             <div className="f4 fw5">
               Payment Section
             </div>
-            <div className='mt4 mtb4'>
-              Your refund will be processed through a <strong>gift card</strong> for the amount corresponding to the returned product.
-            </div>
+            <PaymentMethods
+              paymentData={paymentData}
+              enablePaymentMethodSelection={enablePaymentMethodSelection}
+              errors={errors}
+              paymentMethods={paymentMethods}
+              handleRefundPaymentChange={handleRefundPaymentChange}
+              handleBankDetailsChange={handleBankDetailsChange}
+            />
           </div>
           <TermsAndConditions
             areTermsAccepted={areTermsAccepted}

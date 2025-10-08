@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useQuery, useMutation } from 'react-apollo'
+import { useIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { useOrderForm } from 'vtex.order-manager/OrderForm'
 import { useCssHandles } from 'vtex.css-handles'
 import { useStoreSettings } from '../../../hooks/useStoreSettings'
 import PRODUCTS_AVAILABLE_FOR_INDEPENDENT_RETURN from '../../graphql/getProductsAvailableForIndependentReturn.gql'
 import CREATE_RETURN from '../../graphql/createReturnRequest.gql'
+import { defaultPaymentMethodsMessages } from '../../../utils/defaultPaymentMethodsMessages'
+import { isValidIBANNumber } from '../../../utils/isValidIBANNumber'
 
 const CSS_HANDLES = [
   'returnDetailsContainer',
@@ -14,18 +17,27 @@ const CSS_HANDLES = [
   'highlightedFormMessage',
 ] as const
 
+export type PaymentMethodsOptions = {
+  value: string
+  label: string
+}
+
 export default function useIndividualListReturn() {
   const handles = useCssHandles(CSS_HANDLES)
   const { navigate } = useRuntime()
   const { orderForm } = useOrderForm()
   const { loggedIn } = orderForm
+  const { formatMessage } = useIntl()
 
   const { data, loading, error } = useQuery(PRODUCTS_AVAILABLE_FOR_INDEPENDENT_RETURN, {
     fetchPolicy: 'no-cache',
   })
   const [createReturn, { data: returnData, loading: returnLoading }] = useMutation(CREATE_RETURN);
 
-  const { data: storeSettings } = useStoreSettings()  
+  const { data: storeSettings } = useStoreSettings()
+  const { paymentOptions } = storeSettings ?? {}
+  const { allowedPaymentTypes, enablePaymentMethodSelection } =
+    paymentOptions ?? {}
 
   const [items, setItemsToReturn] = useState<ProductToReturn[]>([])
   const [contactInformation, setContactInformation] = useState<ContactReturnInformation>({
@@ -43,6 +55,11 @@ export default function useIndividualListReturn() {
     addressType: 'CUSTOMER_ADDRESS',
   });
   const [userComment, setUserComment] = useState<string>('');
+  const [paymentData, setPaymentData] = useState<PaymentReturnData>({
+    refundPaymentMethod: '',
+    iban: '',
+    accountHolderName: '',
+  });
   const [areTermsAccepted, setAreTermsAccepted] = useState<boolean>(false);
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -122,6 +139,53 @@ export default function useIndividualListReturn() {
     setUserComment(e.target.value);
   };
 
+  const paymentMethods = () => {
+    if (!allowedPaymentTypes) return []
+    const { bank, card, giftCard } = allowedPaymentTypes
+    const output: PaymentMethodsOptions[] = []
+
+    if (card) {
+      output.push({
+        value: 'card',
+        label: formatMessage(defaultPaymentMethodsMessages.card),
+      })
+    }
+
+    if (giftCard) {
+      output.push({
+        value: 'giftCard',
+        label: formatMessage(defaultPaymentMethodsMessages.giftCard),
+      })
+    }
+
+    if (bank) {
+      output.push({
+        value: 'bank',
+        label: formatMessage(defaultPaymentMethodsMessages.bank),
+      })
+    }
+
+    return output
+  }
+
+  const handleRefundPaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target
+
+    setPaymentData((prev) => ({
+      ...prev,
+      refundPaymentMethod: value,
+    }))
+  }
+
+  const handleBankDetailsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+
+    setPaymentData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
   const handlesTermsAndConditions = () => {
     setAreTermsAccepted(!areTermsAccepted);
   }
@@ -145,6 +209,18 @@ export default function useIndividualListReturn() {
 
     if (!hasValidShipping) {
       currentErrors.push('pickup-data')
+    }
+
+    const hasValidPayment = paymentData.refundPaymentMethod
+
+    if (!hasValidPayment) {
+      currentErrors.push('refund-payment-data')
+    }
+
+    if (paymentData.refundPaymentMethod === 'bank') {
+      if (!paymentData.iban || !isValidIBANNumber(paymentData.iban) || !paymentData.accountHolderName) {
+        currentErrors.push('bank-details')
+      }
     }
 
     if (!areTermsAccepted) {
@@ -180,7 +256,6 @@ export default function useIndividualListReturn() {
       locale: "en-US"
     }
 
-    console.log('Return Request Payload:', returnRequestPayload)
     createReturn({ variables: { returnRequest: returnRequestPayload } })
   }
 
@@ -264,6 +339,8 @@ export default function useIndividualListReturn() {
     contactInformation,
     shippingData,
     userComment,
+    paymentData,
+    enablePaymentMethodSelection,
     areTermsAccepted,
     errors,
     returnData,
@@ -275,6 +352,9 @@ export default function useIndividualListReturn() {
     handleContactInputChange,
     handleShippingInputChange,
     handleCommentChange,
+    paymentMethods,
+    handleRefundPaymentChange,
+    handleBankDetailsChange,
     handlesTermsAndConditions,
     createReturnRequest,
   }
