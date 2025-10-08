@@ -39,8 +39,14 @@ const RefundPayment = (props: RefundMethodProps) => {
         <p>
           <FormattedMessage
             id={`${messageId}.refund-method`}
+            defaultMessage="Refund method: {refundMethod}"
             values={{
-              refundMethod: <FormattedMessage id={`${messageId}.gift-card`} />,
+              refundMethod: (
+                <FormattedMessage
+                  id={`${messageId}.gift-card`}
+                  defaultMessage="Gift Card"
+                />
+              ),
             }}
           />
         </p>
@@ -49,6 +55,7 @@ const RefundPayment = (props: RefundMethodProps) => {
             <p>
               <FormattedMessage
                 id={`${messageId}.gift-card-code`}
+                defaultMessage="Gift Card code: {code}"
                 values={{
                   code: giftCard.redemptionCode,
                 }}
@@ -58,6 +65,7 @@ const RefundPayment = (props: RefundMethodProps) => {
             <p>
               <FormattedMessage
                 id={`${messageId}.gift-card-value`}
+                defaultMessage="Gift Card value: {value}"
                 values={{
                   value: (
                     <FormattedNumber
@@ -83,14 +91,21 @@ const RefundPayment = (props: RefundMethodProps) => {
         <p>
           <FormattedMessage
             id={`${messageId}.refund-method`}
+            defaultMessage="Refund method: {refundMethod}"
             values={{
-              refundMethod: <FormattedMessage id={`${messageId}.bank`} />,
+              refundMethod: (
+                <FormattedMessage
+                  id={`${messageId}.bank`}
+                  defaultMessage="Bank Transfer"
+                />
+              ),
             }}
           />
         </p>
         <p>
           <FormattedMessage
             id={`${messageId}.iban`}
+            defaultMessage="IBAN: {iban}"
             values={{
               iban,
             }}
@@ -99,6 +114,7 @@ const RefundPayment = (props: RefundMethodProps) => {
         <p>
           <FormattedMessage
             id={`${messageId}.account-holder`}
+            defaultMessage="Account holder: {accountHolderName}"
             values={{ accountHolderName }}
           />
         </p>
@@ -112,8 +128,14 @@ const RefundPayment = (props: RefundMethodProps) => {
         <p>
           <FormattedMessage
             id={`${messageId}.refund-method`}
+            defaultMessage="Refund method: {refundMethod}"
             values={{
-              refundMethod: <FormattedMessage id={`${messageId}.card`} />,
+              refundMethod: (
+                <FormattedMessage
+                  id={`${messageId}.card`}
+                  defaultMessage="Credit Card"
+                />
+              ),
             }}
           />
         </p>
@@ -127,9 +149,13 @@ const RefundPayment = (props: RefundMethodProps) => {
         <p>
           <FormattedMessage
             id={`${messageId}.refund-method`}
+            defaultMessage="Refund method: {refundMethod}"
             values={{
               refundMethod: (
-                <FormattedMessage id={`${messageId}.same-as-purchase`} />
+                <FormattedMessage
+                  id={`${messageId}.same-as-purchase`}
+                  defaultMessage="Same as Purchase"
+                />
               ),
             }}
           />
@@ -137,6 +163,7 @@ const RefundPayment = (props: RefundMethodProps) => {
         {domain !== 'admin' ? null : (
           <FormattedMessage
             id="store/return-app.return-request-details.payent-method.refund-option.refund-process"
+            defaultMessage="Automatic refund: {automaticallyRefundPaymentMethod}"
             values={{ automaticallyRefundPaymentMethod }}
           />
         )}
@@ -161,7 +188,10 @@ export const RefundMethodDetail = () => {
   return (
     <section>
       <h3>
-        <FormattedMessage id="store/return-app.return-request-details.payent-method.title" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.payent-method.title"
+          defaultMessage="Refund Payment Method"
+        />
       </h3>
       <RefundPayment
         refundPaymentData={refundPaymentData}

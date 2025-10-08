@@ -30,7 +30,10 @@ export const ItemVerificationStatus = (props: ItemStatusInterface) => {
           <span className="mr2 flex">
             <IconFailure size={14} />
           </span>
-          <FormattedMessage id="store/return-app.return-request-details.table.verification-status.denied" />
+          <FormattedMessage
+            id="store/return-app.return-request-details.table.verification-status.denied"
+            defaultMessage="Denied"
+          />
         </div>
       )
     }
@@ -43,7 +46,10 @@ export const ItemVerificationStatus = (props: ItemStatusInterface) => {
           <span className="mr2 flex">
             <IconSuccess size={14} />
           </span>
-          <FormattedMessage id="store/return-app.return-request-details.table.verification-status.approved" />
+          <FormattedMessage
+            id="store/return-app.return-request-details.table.verification-status.approved"
+            defaultMessage="Approved"
+          />
         </div>
       )
     }
@@ -58,6 +64,7 @@ export const ItemVerificationStatus = (props: ItemStatusInterface) => {
           </span>
           <FormattedMessage
             id="store/return-app.return-request-details.table.verification-status.partially-approved"
+            defaultMessage="Partially approved {quantityRefunded}/{quantity}"
             values={{ quantityRefunded, quantity }}
           />
         </div>
@@ -72,7 +79,10 @@ export const ItemVerificationStatus = (props: ItemStatusInterface) => {
           <span className="mr2 flex">
             <IconClock size={14} />
           </span>
-          <FormattedMessage id="store/return-app.return-request-details.table.verification-status.new" />
+          <FormattedMessage
+            id="store/return-app.return-request-details.table.verification-status.new"
+            defaultMessage="New"
+          />
         </div>
       )
     }

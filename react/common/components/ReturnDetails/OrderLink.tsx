@@ -1,23 +1,11 @@
 import React from 'react'
 import { Link } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
-import { defineMessages, useIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 import { useReturnDetails } from '../../hooks/useReturnDetails'
 
-const messages = defineMessages({
-  independent: {
-    id: 'store/return-app.return-request-details.order-id.independent',
-    defaultMessage: 'Independent Return',
-  },
-  link: {
-    id: 'store/return-app.return-request-details.order-id.link',
-    defaultMessage: 'Order {orderId}',
-  },
-})
-
 export const OrderLink = () => {
-  const intl = useIntl()
   const { data } = useReturnDetails()
   const {
     route: { domain },
@@ -30,7 +18,12 @@ export const OrderLink = () => {
 
   // Independent returns don't have orderId
   if (!orderId) {
-    return <span>{intl.formatMessage(messages.independent)}</span>
+    return (
+      <FormattedMessage
+        id="store/return-app.return-request-details.order-id.independent"
+        defaultMessage="Independent Return"
+      />
+    )
   }
 
   const targetHref = isAdmin
@@ -39,7 +32,11 @@ export const OrderLink = () => {
 
   return (
     <Link href={targetHref} target="_blank">
-      {intl.formatMessage(messages.link, { orderId })}
+      <FormattedMessage
+        id="store/return-app.return-request-details.order-id.link"
+        defaultMessage="Order {orderId}"
+        values={{ orderId }}
+      />
     </Link>
   )
 }

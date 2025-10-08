@@ -17,15 +17,23 @@ type CancellationMessage =
 export const messages = defineMessages({
   adminAllow: {
     id: 'store/return-app.return-request-details.cancellation.modal.adminAllow',
+    defaultMessage:
+      '<p>Attention: This request\'s status will be set to CANCELLED.</p><p>This will notify the user via email and allow them to create a new return request with the cancelled request\'s items.</p><p>If that is not your intention, set the request as DENIED.</p>',
   },
   adminRefuse: {
     id: 'store/return-app.return-request-details.cancellation.modal.adminRefuse',
+    defaultMessage:
+      '<p>Sorry, it\'s not possible to cancel this request due to its current status.</p>',
   },
   storeAllow: {
     id: 'store/return-app.return-request-details.cancellation.modal.storeAllow',
+    defaultMessage:
+      '<p>Cancelling this request will allow the current items to be used in a new return request.</p><p>This action is irreversible.</p>',
   },
   storeRefuse: {
     id: 'store/return-app.return-request-details.cancellation.modal.storeRefuse',
+    defaultMessage:
+      '<p>Sorry, you need to contact the support team to cancel this request due to its current status.</p>',
   },
 })
 
@@ -52,7 +60,10 @@ const RequestCancellation = () => {
   if (isDisabled) {
     return (
       <Button variation="danger" size="small" disabled>
-        <FormattedMessage id="store/return-app.return-request-details.cancellation.cta" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.cancellation.cta"
+          defaultMessage="Cancel request"
+        />
       </Button>
     )
   }
@@ -93,7 +104,10 @@ const RequestCancellation = () => {
           onClick={onOpen}
           disabled={isDisabled}
         >
-          <FormattedMessage id="store/return-app.return-request-details.cancellation.cta" />
+          <FormattedMessage
+            id="store/return-app.return-request-details.cancellation.cta"
+            defaultMessage="Cancel request"
+          />
         </Button>
       </div>
 
@@ -110,7 +124,10 @@ const RequestCancellation = () => {
                 onClick={onClose}
                 disabled={submitting}
               >
-                <FormattedMessage id="store/return-app.return-request-details.cancellation.modal.close" />
+                <FormattedMessage
+                  id="store/return-app.return-request-details.cancellation.modal.close"
+                  defaultMessage="Close"
+                />
               </Button>
             </span>
             <span>
@@ -121,7 +138,10 @@ const RequestCancellation = () => {
                 onClick={handleSubmit}
                 isLoading={submitting}
               >
-                <FormattedMessage id="store/return-app.return-request-details.cancellation.modal.accept" />
+                <FormattedMessage
+                  id="store/return-app.return-request-details.cancellation.modal.accept"
+                  defaultMessage="Proceed to cancel"
+                />
               </Button>
             </span>
           </div>
