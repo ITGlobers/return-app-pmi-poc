@@ -32,7 +32,7 @@ export const TotalWrapper = (props: Props) => {
         <div className="w-100 mt2">
           <div className="f4 fw5 c-on-base">
             <FormattedNumber
-              value={value / 100}
+              value={value / 10000}
               style="currency"
               currency={cultureInfoData.currencyCode}
             />

@@ -1,0 +1,20 @@
+mutation CreateReturn(
+  $items: [ReturnRequestItemInput!]!,
+  $customerProfileData: CustomerProfileDataInput!,
+  $pickupReturnData:  PickupReturnDataInput!,
+  $userComment: String,
+) {
+  createReturnRequest(returnRequest: {
+    independentReturn: true,
+    items: $items,
+    pickupReturnData: $pickupReturnData,
+    userComment: $userComment,
+    refundPaymentData: {
+      refundPaymentMethod: giftCard
+    },
+    locale: "en-US"
+  })
+    @context(provider: "baranda.return-app-pmi") {
+    returnRequestId
+  }
+}

@@ -20,7 +20,5 @@ export const useReturnRequestList = () => {
     fetchPolicy: 'no-cache',
   })
 
-  console.log('data In', data)
-
   return { returnRequestData: { data, loading, error, refetch } }
 }
