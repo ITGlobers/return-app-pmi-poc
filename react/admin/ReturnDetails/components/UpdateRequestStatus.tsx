@@ -98,11 +98,17 @@ export const UpdateRequestStatus = ({ onViewVerifyItems }: Props) => {
     <section className="mv4">
       <div className="flex items-center">
         <h3>
-          <FormattedMessage id="admin/return-app.return-request-details.update-status.title" />
+          <FormattedMessage
+            id="admin/return-app.return-request-details.update-status.title"
+            defaultMessage="Update status or add comment"
+          />
         </h3>
         <Tooltip
           label={
-            <FormattedMessage id="admin/return-app.return-request-details.update-status.tooltip" />
+            <FormattedMessage
+              id="admin/return-app.return-request-details.update-status.tooltip"
+              defaultMessage="Select a status to update the return request, or add a comment without changing the status"
+            />
           }
         >
           <span className="yellow pointer ml3 flex">
@@ -115,7 +121,10 @@ export const UpdateRequestStatus = ({ onViewVerifyItems }: Props) => {
         onSubmit={handleSubmit}
       >
         <div className="mb6">
-          <FormattedMessage id="admin/return-app.return-request-details.update-status.dropdown.placeholder">
+          <FormattedMessage
+            id="admin/return-app.return-request-details.update-status.dropdown.placeholder"
+            defaultMessage="Select a status"
+          >
             {(placeholder) => (
               <Dropdown
                 size="small"
@@ -133,7 +142,10 @@ export const UpdateRequestStatus = ({ onViewVerifyItems }: Props) => {
         <div className="mb6">
           <Textarea
             label={
-              <FormattedMessage id="admin/return-app.return-request-details.update-status.textarea.label" />
+              <FormattedMessage
+                id="admin/return-app.return-request-details.update-status.textarea.label"
+                defaultMessage="Add comment (optional)"
+              />
             }
             value={comment}
             onChange={handleCommentsChange}
@@ -143,7 +155,10 @@ export const UpdateRequestStatus = ({ onViewVerifyItems }: Props) => {
           <Checkbox
             checked={visibleForCustomer}
             label={
-              <FormattedMessage id="admin/return-app.return-request-details.update-status.checkbox.label" />
+              <FormattedMessage
+                id="admin/return-app.return-request-details.update-status.checkbox.label"
+                defaultMessage="Visible to customer"
+              />
             }
             onChange={handleVisibleToCustomerChange}
           />
@@ -160,15 +175,24 @@ export const UpdateRequestStatus = ({ onViewVerifyItems }: Props) => {
             isLoading={submitting}
           >
             {updateStatus ? (
-              <FormattedMessage id="admin/return-app.return-request-details.update-status.button.update-status" />
+              <FormattedMessage
+                id="admin/return-app.return-request-details.update-status.button.update-status"
+                defaultMessage="Update status"
+              />
             ) : (
-              <FormattedMessage id="admin/return-app.return-request-details.update-status.button.comment" />
+              <FormattedMessage
+                id="admin/return-app.return-request-details.update-status.button.comment"
+                defaultMessage="Add comment"
+              />
             )}
           </Button>
           {data.returnRequestDetails.status === 'pendingVerification' ? (
             <span className="ml4">
               <Button type="button" onClick={onViewVerifyItems} size="small">
-                <FormattedMessage id="admin/return-app.return-request-details.verify-items.button" />
+                <FormattedMessage
+                  id="admin/return-app.return-request-details.verify-items.button"
+                  defaultMessage="Verify items"
+                />
               </Button>
             </span>
           ) : null}

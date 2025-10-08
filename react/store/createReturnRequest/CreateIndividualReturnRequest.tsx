@@ -1,127 +1,120 @@
-import React, { useEffect, useState } from 'react'
-import type { RouteComponentProps } from 'react-router'
-import { useQuery } from 'react-apollo'
-import { PageHeader, PageBlock } from 'vtex.styleguide'
-import { useRuntime } from 'vtex.render-runtime'
-
+import React from 'react'
+import { PageHeader, PageBlock, Divider, Button } from 'vtex.styleguide'
 import { StoreSettingsPovider } from '../provider/StoreSettingsProvider'
 import { OrderToReturnProvider } from '../provider/OrderToReturnProvider'
-import { useReturnRequest } from '../hooks/useReturnRequest'
-import PRODUCTS_AVAILABLE_FOR_INDEPENDENT_RETURN from './graphql/getProductsAvailableForIndependentReturn.gql'
-import { useStoreSettings } from '../hooks/useStoreSettings'
 import { OrderDetailsLoader } from './components/loaders/OrderDetailsLoader'
-import { ReturnIndividualDetails } from './components/ReturnIndividualDetail'
+import useIndividualListReturn from './components/IndividualReturn/useIndividualListReturn'
+import { ItemsList } from './components/IndividualReturn/ItemsList'
+import { ContactDetails } from './components/IndividualReturn/ContactDetails'
+import { AddressDetails } from './components/IndividualReturn/AddressDetails'
+import { UserCommentDetails } from './components/IndividualReturn/UserCommentDetails'
+import { TermsAndConditions } from './components/IndividualReturn/TermsAndConditions'
+import styles from './components/IndividualReturn/styles.css'
 
-export type Page = 'form-details' | 'submit-form'
-
-type RouteProps = RouteComponentProps<{ orderId: string }>
-
-const createPageHeaderProps = (navigate: any) => {
-  return {
-    title: "Return Request",
-    linkLabel: "My Returns",
-    onLinkClick: () => {
-      navigate({
-        to: '#/my-returns',
-      })
-    },
-  }
-}
-
-export const CreateIndividualReturnRequest = (props: RouteProps) => {
-  const [items, setItemsToReturn] = useState<ItemToReturn[]>([])
+export const CreateIndividualReturnRequest = () => {
 
   const {
-    actions: { updateReturnRequest },
-  } = useReturnRequest()
-
-  const { data: storeSettings } = useStoreSettings()
-  const { paymentOptions } = storeSettings ?? {}
-  const { enablePaymentMethodSelection } = paymentOptions ?? {}
-
-  const { navigate } = useRuntime()
-
-  const { data, loading, error } = useQuery(PRODUCTS_AVAILABLE_FOR_INDEPENDENT_RETURN, {
-    fetchPolicy: 'no-cache',
-  })
-
-  console.log('data', data)
-
-  useEffect(() => {
-    if (!data || !storeSettings) {
-      return
-    }
-
-    const { productsAvailableForIndependentReturn } = data
-
-    const itemsToReturn = productsAvailableForIndependentReturn.map((item: any) => {
-      const quantityAvailable = item.purchaseHistory.reduce(
-        (acc: number, curr: any) => acc + curr.quantityPurchased,
-        0
-      )
-
-      console.log('quantityAvailable', quantityAvailable)
-
-      return {
-        id: item.skuId,
-        quantityAvailable,
-        isExcluded: false,
-        name: item.name,
-        imageUrl: item.imageUrl,
-      }
-    })
-
-    setItemsToReturn(itemsToReturn)
-
-    // const { clientProfileData, shippingData } = orderToReturnSummary
-
-    // const initialPickupAddress = setInitialPickupAddress(shippingData)
-
-    // updateReturnRequest({
-    //   type: 'newReturnRequestState',
-    //   payload: {
-    //     orderId: id,
-    //     customerProfileData: clientProfileData,
-    //     pickupReturnData: initialPickupAddress,
-    //     items: itemsToReturn.map(({ orderItemIndex }) => ({
-    //       orderItemIndex,
-    //       quantity: 0,
-    //     })),
-    //     refundPaymentData: enablePaymentMethodSelection
-    //       ? undefined
-    //       : {
-    //           refundPaymentMethod: 'sameAsPurchase',
-    //         },
-    //   },
-    // })
-  }, [data, storeSettings, updateReturnRequest, enablePaymentMethodSelection])
-
-  const handlePageChange = (_selectedPage: Page) => {
-    // TODO: Implement page navigation for independent returns
-  }
+    items,
+    loading,
+    error,
+    handles,
+    contactInformation,
+    shippingData,
+    userComment,
+    areTermsAccepted,
+    errors,
+    returnData,
+    returnLoading,
+    createPageHeaderProps,
+    handleUpdateItemQuantity,
+    handleItemReasonChange,
+    handleItemSelection,
+    handleContactInputChange,
+    handleShippingInputChange,
+    handleCommentChange,
+    handlesTermsAndConditions,
+    createReturnRequest,
+  } = useIndividualListReturn()
 
   return (
     <div className="create-return-request__container">
-      CUSTOMMMMM
       <PageBlock>
-        <PageHeader {...createPageHeaderProps(navigate)} />
+        <PageHeader {...createPageHeaderProps()} />
         <OrderDetailsLoader data={{ loading, error }}>
-          <ReturnIndividualDetails
-            {...props}
-            onPageChange={handlePageChange}
+          <div className={`${handles.returnDetailsContainer} mb5`}>
+            <div className="w-100 mt4">
+              <div className="f4 mb5 fw5">
+                Select the products you want to refund
+              </div>
+            </div>
+          </div>
+          <ItemsList
             items={items}
+            errors={errors}
+            handleUpdateItemQuantity={handleUpdateItemQuantity}
+            handleItemReasonChange={handleItemReasonChange}
+            handleItemSelection={handleItemSelection}
           />
+          <div className="mb8">
+            <Divider orientation="horizontal" />
+          </div>
+          <div className="w-100">
+            <div className="f4 fw5">
+              Contact Details
+            </div>
+          </div>
+          <div className="flex-ns flex-wrap flex-row">
+            <ContactDetails
+              customerProfileData={contactInformation}
+              errors={errors}
+              handleContactInputChange={handleContactInputChange}
+            />
+            <AddressDetails
+              shippingData={shippingData}
+              errors={errors}
+              handleShippingInputChange={handleShippingInputChange}
+            />
+            <UserCommentDetails
+              userComment={userComment}
+              handleCommentChange={handleCommentChange}
+            />
+          </div>
+          <div className="mv8">
+            <Divider orientation="horizontal" />
+          </div>
+          <div className="w-100">
+            <div className="f4 fw5">
+              Payment Section
+            </div>
+            <div className='mt4 mtb4'>
+              Your refund will be processed through a <strong>gift card</strong> for the amount corresponding to the returned product.
+            </div>
+          </div>
+          <TermsAndConditions
+            areTermsAccepted={areTermsAccepted}
+            errors={errors}
+            handlesTermsAndConditions={handlesTermsAndConditions}
+          />
+          <div className={`${styles.processButton} flex justify-center mt6`}>
+            <Button
+              onClick={createReturnRequest}
+              isLoading={returnLoading || returnData}
+              disabled={returnLoading || returnData}
+            >
+              Process Return
+            </Button>
+          </div>
         </OrderDetailsLoader>
       </PageBlock>
     </div>
   )
 }
 
-export const CreateIndividualReturnRequestContainer = (props: RouteProps) => {
+export const CreateIndividualReturnRequestContainer = () => {
   return (
     <StoreSettingsPovider>
       <OrderToReturnProvider>
-        <CreateIndividualReturnRequest {...props} />
+        <CreateIndividualReturnRequest />
       </OrderToReturnProvider>
     </StoreSettingsPovider>
   )

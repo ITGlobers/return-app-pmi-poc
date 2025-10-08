@@ -28,7 +28,10 @@ export const itemDetailsSchema = ({
   const properties = {
     imageUrl: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.product" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.product"
+          defaultMessage="Product"
+        />
       ),
       width: 80,
       cellRenderer: function ProductImage({
@@ -43,7 +46,10 @@ export const itemDetailsSchema = ({
     },
     name: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.product-info" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.product-info"
+          defaultMessage="Name"
+        />
       ),
       minWidth: 500,
       cellRenderer: function ProductName({
@@ -65,6 +71,7 @@ export const itemDetailsSchema = ({
               <div className="mv2">
                 <FormattedMessage
                   id="store/return-app.return-request-details.table.product-info.ref-id"
+                  defaultMessage="<b>Ref ID:</b> {refId}"
                   values={{
                     refId,
                     b: StrongChunk,
@@ -75,8 +82,9 @@ export const itemDetailsSchema = ({
             <div className="mv2">
               <FormattedMessage
                 id="store/return-app.return-request-details.table.product-info.reason"
+                defaultMessage="<b>Reason:</b> {reason}"
                 values={{
-                  reason: returnReason.otherReason ?? returnReason.reason,
+                  reason: returnReason.otherReason || returnReason.reason,
                   b: StrongChunk,
                 }}
               />
@@ -85,6 +93,7 @@ export const itemDetailsSchema = ({
               <div className="mv2">
                 <FormattedMessage
                   id="store/return-app.return-request-details.table.product-info.condition"
+                  defaultMessage="<b>Condition:</b> {condition}"
                   values={{
                     condition: formatMessage(
                       defaultReturnConditionsMessages[condition]
@@ -98,6 +107,7 @@ export const itemDetailsSchema = ({
               <div className="mv2">
                 <FormattedMessage
                   id="store/return-app.return-request-details.table.product-info.sold-by"
+                  defaultMessage="<b>Sold by:</b> {seller}"
                   values={{
                     seller: sellerName,
                     b: StrongChunk,
@@ -111,13 +121,19 @@ export const itemDetailsSchema = ({
     },
     quantity: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.quantity" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.quantity"
+          defaultMessage="Quantity"
+        />
       ),
       width: 80,
     },
     sellingPrice: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.unit-price" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.unit-price"
+          defaultMessage="Unit Price"
+        />
       ),
       width: 120,
       headerRight: true,
@@ -129,7 +145,7 @@ export const itemDetailsSchema = ({
         return (
           <AlignItemRight>
             <FormattedNumber
-              value={cellData / 100}
+              value={cellData / 10000}
               style="currency"
               currency={currencyCode}
             />
@@ -139,7 +155,10 @@ export const itemDetailsSchema = ({
     },
     tax: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.tax" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.tax"
+          defaultMessage="Tax"
+        />
       ),
       width: 120,
       headerRight: true,
@@ -151,7 +170,7 @@ export const itemDetailsSchema = ({
         return (
           <AlignItemRight>
             <FormattedNumber
-              value={cellData / 100}
+              value={cellData / 10000}
               style="currency"
               currency={currencyCode}
             />
@@ -161,7 +180,10 @@ export const itemDetailsSchema = ({
     },
     totalItems: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.total-price" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.total-price"
+          defaultMessage="Total Price"
+        />
       ),
       width: 120,
       headerRight: true,
@@ -175,7 +197,7 @@ export const itemDetailsSchema = ({
         return (
           <AlignItemRight>
             <FormattedNumber
-              value={((sellingPrice + tax) * quantity) / 100}
+              value={((sellingPrice + tax) * quantity) / 10000}
               style="currency"
               currency={currencyCode}
             />
@@ -185,7 +207,10 @@ export const itemDetailsSchema = ({
     },
     verificationStatus: {
       title: (
-        <FormattedMessage id="store/return-app.return-request-details.table.header.verification-status" />
+        <FormattedMessage
+          id="store/return-app.return-request-details.table.header.verification-status"
+          defaultMessage="Verification Status"
+        />
       ),
       minWidth: 150,
       cellRenderer: function VerificationStatus({

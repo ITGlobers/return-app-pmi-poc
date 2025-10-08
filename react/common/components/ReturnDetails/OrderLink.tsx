@@ -19,7 +19,10 @@ export const OrderLink = () => {
   // Independent returns don't have orderId
   if (!orderId) {
     return (
-      <FormattedMessage id="store/return-app.return-request-details.order-id.independent" />
+      <FormattedMessage
+        id="store/return-app.return-request-details.order-id.independent"
+        defaultMessage="Independent Return"
+      />
     )
   }
 
@@ -31,6 +34,7 @@ export const OrderLink = () => {
     <Link href={targetHref} target="_blank">
       <FormattedMessage
         id="store/return-app.return-request-details.order-id.link"
+        defaultMessage="Order {orderId}"
         values={{ orderId }}
       />
     </Link>

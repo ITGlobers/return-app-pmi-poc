@@ -23,6 +23,7 @@ export const CurrentRequestStatus = () => {
       <div className="mb4">
         <FormattedMessage
           id="store/return-app.return-request-details.current-status.request-id"
+          defaultMessage="<b>Request ID:</b> {id}"
           values={{ id, b: renderChunks }}
         />
       </div>
@@ -30,6 +31,7 @@ export const CurrentRequestStatus = () => {
         <span className="mr2">
           <FormattedMessage
             id="store/return-app.return-request-details.current-status.status"
+            defaultMessage="<b>Status:</b>"
             values={{
               b: renderChunks,
             }}

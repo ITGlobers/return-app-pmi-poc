@@ -27,29 +27,31 @@ export const statusAllowed: Record<Status, Status[]> = {
 }
 
 export const statusMessageIdAdmin = defineMessages({
-  new: { id: 'store/return-app-status.new' },
-  processing: { id: 'store/return-app-status.processing' },
-  pickedUpFromClient: { id: 'store/return-app-status.pickedup-from-client' },
-  pendingVerification: { id: 'store/return-app-status.pending-verification' },
-  packageVerified: { id: 'store/return-app-status.package-verified' },
-  amountRefunded: { id: 'store/return-app-status.refunded' },
-  denied: { id: 'store/return-app-status.denied' },
-  cancelled: { id: 'store/return-app-status.cancelled' },
+  new: { id: 'store/return-app-status.new', defaultMessage: 'New' },
+  processing: { id: 'store/return-app-status.processing', defaultMessage: 'Processing' },
+  pickedUpFromClient: { id: 'store/return-app-status.pickedup-from-client', defaultMessage: 'Picked up from client' },
+  pendingVerification: { id: 'store/return-app-status.pending-verification', defaultMessage: 'Pending verification' },
+  packageVerified: { id: 'store/return-app-status.package-verified', defaultMessage: 'Package verified' },
+  amountRefunded: { id: 'store/return-app-status.refunded', defaultMessage: 'Refunded' },
+  denied: { id: 'store/return-app-status.denied', defaultMessage: 'Denied' },
+  cancelled: { id: 'store/return-app-status.cancelled', defaultMessage: 'Cancelled' },
 })
 
 export const timelineStatusMessageId = defineMessages({
-  new: { id: 'store/return-app-status.timeline.new' },
-  processing: { id: 'store/return-app-status.timeline.processing' },
+  new: { id: 'store/return-app-status.timeline.new', defaultMessage: 'New - {ts, date, medium} {ts, time, short}' },
+  processing: { id: 'store/return-app-status.timeline.processing', defaultMessage: 'Processing - {ts, date, medium} {ts, time, short}' },
   pickedUpFromClient: {
     id: 'store/return-app-status.timeline.pickedup-from-client',
+    defaultMessage: 'Picked up from client - {ts, date, medium} {ts, time, short}',
   },
   pendingVerification: {
     id: 'store/return-app-status.timeline.pending-verification',
+    defaultMessage: 'Pending verification - {ts, date, medium} {ts, time, short}',
   },
-  packageVerified: { id: 'store/return-app-status.timeline.package-verified' },
-  amountRefunded: { id: 'store/return-app-status.timeline.refunded' },
-  denied: { id: 'store/return-app-status.timeline.denied' },
-  cancelled: { id: 'store/return-app-status.timeline.cancelled' },
+  packageVerified: { id: 'store/return-app-status.timeline.package-verified', defaultMessage: 'Package verified - {ts, date, medium} {ts, time, short}' },
+  amountRefunded: { id: 'store/return-app-status.timeline.refunded', defaultMessage: 'Refunded - {ts, date, medium} {ts, time, short}' },
+  denied: { id: 'store/return-app-status.timeline.denied', defaultMessage: 'Denied - {ts, date, medium} {ts, time, short}' },
+  cancelled: { id: 'store/return-app-status.timeline.cancelled', defaultMessage: 'Cancelled - {ts, date, medium} {ts, time, short}' },
 })
 
 type Comments = RefundStatusComment[]

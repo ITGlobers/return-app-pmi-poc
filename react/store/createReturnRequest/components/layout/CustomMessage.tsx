@@ -9,7 +9,7 @@ interface Props {
 
 export const CustomMessage = ({ status, message }: Props) => {
   return (
-    <section className="flex items-center mt2">
+    <section className="flex items-center mt4">
       <div
         className={`flex items-center ${
           status === 'error' ? 'bg-washed-red' : 'bg-washed-yellow'

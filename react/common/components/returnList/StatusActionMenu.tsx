@@ -16,30 +16,39 @@ const allStatusKey = 'allStatus'
 const keyedStatusMessages = defineMessages({
   [allStatusKey]: {
     id: 'store/return-app.return-request-list.table.status.allStatus',
+    defaultMessage: 'Status',
   },
   new: {
     id: 'store/return-app.return-request-list.table.status.new',
+    defaultMessage: 'New',
   },
   processing: {
     id: 'store/return-app.return-request-list.table.status.processing',
+    defaultMessage: 'Processing',
   },
   pickedUpFromClient: {
     id: 'store/return-app.return-request-list.table.status.pickedup-from-client',
+    defaultMessage: 'Picked up from customer',
   },
   pendingVerification: {
     id: 'store/return-app.return-request-list.table.status.pending-verification',
+    defaultMessage: 'Pending verification',
   },
   packageVerified: {
     id: 'store/return-app.return-request-list.table.status.package-verified',
+    defaultMessage: 'Package verified',
   },
   denied: {
     id: 'store/return-app.return-request-list.table.status.denied',
+    defaultMessage: 'Denied',
   },
   cancelled: {
     id: 'store/return-app.return-request-list.table.status.cancelled',
+    defaultMessage: 'Cancelled',
   },
   amountRefunded: {
     id: 'store/return-app.return-request-list.table.status.refunded',
+    defaultMessage: 'Refunded',
   },
 })
 
@@ -52,7 +61,7 @@ const StatusActionMenu = (props: Props) => {
     const keyName = key === allStatusKey ? '' : key
 
     return {
-      label: formatMessage({ id: keyedStatusMessages[key].id }),
+      label: formatMessage(keyedStatusMessages[key]),
       onClick: () => handleOnChange('status', keyName),
     }
   })
