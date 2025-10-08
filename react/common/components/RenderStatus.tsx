@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Status } from 'baranda.return-app-pmi'
-import { FormattedMessage } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 import {
   IconClock,
   IconFailure,
@@ -21,89 +21,107 @@ const status = {
   cancelled: 'cancelled',
 } as const
 
+const statusMessages = defineMessages({
+  new: {
+    id: 'store/return-app.return-request-list.table.status.new',
+    defaultMessage: 'New',
+  },
+  processing: {
+    id: 'store/return-app.return-request-list.table.status.processing',
+    defaultMessage: 'Processing',
+  },
+  pickedUpFromClient: {
+    id: 'store/return-app.return-request-list.table.status.pickedup-from-client',
+    defaultMessage: 'Picked up from client',
+  },
+  pendingVerification: {
+    id: 'store/return-app.return-request-list.table.status.pending-verification',
+    defaultMessage: 'Pending verification',
+  },
+  packageVerified: {
+    id: 'store/return-app.return-request-list.table.status.package-verified',
+    defaultMessage: 'Package verified',
+  },
+  denied: {
+    id: 'store/return-app.return-request-list.table.status.denied',
+    defaultMessage: 'Denied',
+  },
+  amountRefunded: {
+    id: 'store/return-app.return-request-list.table.status.refunded',
+    defaultMessage: 'Refunded',
+  },
+  cancelled: {
+    id: 'store/return-app.return-request-list.table.status.cancelled',
+    defaultMessage: 'Cancelled',
+  },
+})
+
 /**
  * Renders the status with an icon and color
  */
 export function renderStatus(requestStatus: Status) {
-  switch (requestStatus) {
-    case status.verified:
-      return (
-        <div className="green flex items-center">
-          <span className="mr2 flex">
-            <IconSuccess size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.package-verified" />
-        </div>
-      )
+  const RenderStatusComponent = () => {
+    const intl = useIntl()
 
-    case status.denied:
-      return (
-        <div className="red flex items-center">
-          <span className="mr2 flex">
-            <IconFailure size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.denied" />
-        </div>
-      )
+    const statusConfig: Record<
+      Status,
+      {
+        color: string
+        icon: React.ReactNode
+        messageKey: keyof typeof statusMessages
+      }
+    > = {
+      [status.verified]: {
+        color: 'green',
+        icon: <IconSuccess size={14} />,
+        messageKey: 'packageVerified',
+      },
+      [status.denied]: {
+        color: 'red',
+        icon: <IconFailure size={14} />,
+        messageKey: 'denied',
+      },
+      [status.cancelled]: {
+        color: 'red',
+        icon: <IconFailure size={14} />,
+        messageKey: 'cancelled',
+      },
+      [status.pendingVerification]: {
+        color: 'yellow',
+        icon: <IconClock size={14} />,
+        messageKey: 'pendingVerification',
+      },
+      [status.processing]: {
+        color: 'yellow',
+        icon: <IconClock size={14} />,
+        messageKey: 'processing',
+      },
+      [status.refunded]: {
+        color: 'green',
+        icon: <IconCheck size={14} />,
+        messageKey: 'amountRefunded',
+      },
+      [status.picked]: {
+        color: '',
+        icon: <IconExternalLinkMini size={11} />,
+        messageKey: 'pickedUpFromClient',
+      },
+      [status.new]: {
+        color: 'green',
+        icon: <IconVisibilityOn size={14} />,
+        messageKey: 'new',
+      },
+    }
 
-    case status.cancelled:
-      return (
-        <div className="red flex items-center">
-          <span className="mr2 flex">
-            <IconFailure size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.cancelled" />
-        </div>
-      )
+    const config = statusConfig[requestStatus] ?? statusConfig[status.new]
 
-    case status.pendingVerification:
-      return (
-        <div className="yellow flex items-center">
-          <span className="mr2 flex">
-            <IconClock size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.pending-verification" />
-        </div>
-      )
-
-    case status.processing:
-      return (
-        <div className="yellow flex items-center">
-          <span className="mr2 flex">
-            <IconClock size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.processing" />
-        </div>
-      )
-
-    case status.refunded:
-      return (
-        <div className="green flex items-center">
-          <span className="mr2 flex">
-            <IconCheck size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.refunded" />
-        </div>
-      )
-
-    case status.picked:
-      return (
-        <div className="flex items-center">
-          <span className="mr2 flex">
-            <IconExternalLinkMini size={11} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.pickedup-from-client" />
-        </div>
-      )
-
-    default:
-      return (
-        <div className="green flex items-center">
-          <span className="mr2 flex">
-            <IconVisibilityOn size={14} />
-          </span>
-          <FormattedMessage id="store/return-app.return-request-list.table.status.new" />
-        </div>
-      )
+    return (
+      <div className={`${config.color} flex items-center`}>
+        <span className="mr2 flex">{config.icon}</span>
+        {intl.formatMessage(statusMessages[config.messageKey])}
+      </div>
+    )
   }
+
+  return <RenderStatusComponent />
 }

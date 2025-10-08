@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 import { Table, EmptyState, Spinner } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 import { useRuntime } from 'vtex.render-runtime'
@@ -16,7 +16,31 @@ const CSS_HANDLES = [
   'loadingDataSpinnerContainer',
 ] as const
 
+const messages = defineMessages({
+  errorTitle: {
+    id: 'store/return-app.return-request-list.error.title',
+    defaultMessage: 'Error loading list',
+  },
+  errorDescription: {
+    id: 'store/return-app.return-request-list.error.description',
+    defaultMessage: 'An error occurred while loading the request list. Please try again.',
+  },
+  emptyState: {
+    id: 'store/return-app.return-request-list.table.emptyState',
+    defaultMessage: 'No results available',
+  },
+  emptyStateChildren: {
+    id: 'store/return-app.return-request-list.table.emptyState-children',
+    defaultMessage: 'Try different filters for your search',
+  },
+  textOf: {
+    id: 'store/return-app.return-request-list.table-pagination.textOf',
+    defaultMessage: 'of',
+  },
+})
+
 const ListTable = () => {
+  const intl = useIntl()
   const [mobileOrdersList, setMobileOrdersList] = useState<
     ReturnRequestResponse[]
   >([])
@@ -139,12 +163,8 @@ const ListTable = () => {
 
   if (error) {
     return (
-      <EmptyState
-        title={
-          <FormattedMessage id="store/return-app.return-request-list.error.title" />
-        }
-      >
-        <FormattedMessage id="store/return-app.return-request-list.error.description" />
+      <EmptyState title={intl.formatMessage(messages.errorTitle)}>
+        {intl.formatMessage(messages.errorDescription)}
       </EmptyState>
     )
   }
@@ -175,19 +195,13 @@ const ListTable = () => {
           fullWidth
           loading={loading}
           items={list}
-          emptyStateLabel={
-            <FormattedMessage id="store/return-app.return-request-list.table.emptyState" />
-          }
+          emptyStateLabel={intl.formatMessage(messages.emptyState)}
           emptyStateChildren={
-            <p>
-              <FormattedMessage id="store/return-app.return-request-list.table.emptyState-children" />
-            </p>
+            <p>{intl.formatMessage(messages.emptyStateChildren)}</p>
           }
           schema={returnsListSchema}
           pagination={{
-            textOf: (
-              <FormattedMessage id="store/return-app.return-request-list.table-pagination.textOf" />
-            ),
+            textOf: intl.formatMessage(messages.textOf),
             onNextClick: handleNextPage,
             onPrevClick: handlePrevPage,
             currentItemFrom: pageItemFrom,

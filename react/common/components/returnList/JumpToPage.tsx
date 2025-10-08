@@ -1,10 +1,21 @@
 import type { FormEvent } from 'react'
 import React, { useEffect, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = ['jumpToPageContainer'] as const
+
+const messages = defineMessages({
+  pageText: {
+    id: 'store/return-app.return-request-list.table-jumpToPage.pageText',
+    defaultMessage: 'Page',
+  },
+  cta: {
+    id: 'store/return-app.return-request-list.table-jumpToPage.cta',
+    defaultMessage: 'GO',
+  },
+})
 
 interface Props {
   handleJumpToPage: (page: number) => void
@@ -14,6 +25,7 @@ interface Props {
 
 const JumpToPage = (props: Props) => {
   const handles = useCssHandles(CSS_HANDLES)
+  const intl = useIntl()
 
   const { handleJumpToPage, currentPage, maxPage } = props
 
@@ -46,7 +58,7 @@ const JumpToPage = (props: Props) => {
       >
         <div className="mr3">
           <span className="c-muted-2 t-small">
-            <FormattedMessage id="store/return-app.return-request-list.table-jumpToPage.pageText" />{' '}
+            {intl.formatMessage(messages.pageText)}{' '}
             {`${currentPage} - ${maxPage}`}
           </span>
         </div>
@@ -69,7 +81,7 @@ const JumpToPage = (props: Props) => {
             onClick={handleSubmit}
             disabled={!desiredPage || !canSubmit}
           >
-            <FormattedMessage id="store/return-app.return-request-list.table-jumpToPage.cta" />
+            {intl.formatMessage(messages.cta)}
           </Button>
         </div>
       </div>

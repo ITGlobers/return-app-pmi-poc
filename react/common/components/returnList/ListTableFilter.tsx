@@ -1,6 +1,6 @@
 import type { FormEvent } from 'react'
 import React, { useState } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 import { Input, DatePicker, Button } from 'vtex.styleguide'
 import type {
   QueryReturnRequestListArgs,
@@ -14,6 +14,37 @@ import { useCssHandles } from 'vtex.css-handles'
 import { StatusActionMenu } from './StatusActionMenu'
 
 const CSS_HANDLES = ['listTableFilterContainer'] as const
+
+const messages = defineMessages({
+  requestId: {
+    id: 'store/return-app.return-request-list.table-data.requestId',
+    defaultMessage: 'Request ID',
+  },
+  sequenceNumber: {
+    id: 'store/return-app.return-request-list.table-data.sequenceNumber',
+    defaultMessage: 'Sequence Number',
+  },
+  orderId: {
+    id: 'store/return-app.return-request-list.table-data.orderId',
+    defaultMessage: 'Order ID',
+  },
+  fromDate: {
+    id: 'store/return-app.return-request-list.table-filters.fromDate',
+    defaultMessage: 'From date',
+  },
+  toDate: {
+    id: 'store/return-app.return-request-list.table-filters.toDate',
+    defaultMessage: 'To date',
+  },
+  applyFilters: {
+    id: 'store/return-app.return-request-list.table-filters.apply-filters',
+    defaultMessage: 'APPLY',
+  },
+  clearFilters: {
+    id: 'store/return-app.return-request-list.table-filters.clear-filters',
+    defaultMessage: 'CLEAR',
+  },
+})
 
 interface Props {
   refetch: (variables?: QueryReturnRequestListArgs | undefined) => Promise<
@@ -50,6 +81,7 @@ const initialFilters = {
 
 const ListTableFilter = (props: Props) => {
   const handles = useCssHandles(CSS_HANDLES)
+  const intl = useIntl()
 
   const { refetch, loading, isDisabled } = props
 
@@ -119,84 +151,64 @@ const ListTableFilter = (props: Props) => {
       <div className={`${handles.listTableFilterContainer} flex items-center`}>
         {route.domain === 'admin' ? (
           <div className="mr2">
-            <FormattedMessage id="store/return-app.return-request-list.table-data.requestId">
-              {(formattedMessage) => (
-                <Input
-                  placeholder={formattedMessage}
-                  size="small"
-                  value={filters.id}
-                  onChange={(e: FormEvent<HTMLInputElement>) =>
-                    handleOnChange('id', e.currentTarget.value)
-                  }
-                  readOnly={isDisabled && !isFiltering}
-                />
-              )}
-            </FormattedMessage>
+            <Input
+              placeholder={intl.formatMessage(messages.requestId)}
+              size="small"
+              value={filters.id}
+              onChange={(e: FormEvent<HTMLInputElement>) =>
+                handleOnChange('id', e.currentTarget.value)
+              }
+              readOnly={isDisabled && !isFiltering}
+            />
           </div>
         ) : null}
         <div className="mh2">
-          <FormattedMessage id="store/return-app.return-request-list.table-data.sequenceNumber">
-            {(formattedMessage) => (
-              <Input
-                placeholder={formattedMessage}
-                size="small"
-                value={filters.sequenceNumber}
-                onChange={(e: FormEvent<HTMLInputElement>) =>
-                  handleOnChange('sequenceNumber', e.currentTarget.value)
-                }
-                readOnly={isDisabled && !isFiltering}
-              />
-            )}
-          </FormattedMessage>
+          <Input
+            placeholder={intl.formatMessage(messages.sequenceNumber)}
+            size="small"
+            value={filters.sequenceNumber}
+            onChange={(e: FormEvent<HTMLInputElement>) =>
+              handleOnChange('sequenceNumber', e.currentTarget.value)
+            }
+            readOnly={isDisabled && !isFiltering}
+          />
         </div>
         <div className="mh2">
-          <FormattedMessage id="store/return-app.return-request-list.table-data.orderId">
-            {(formattedMessage) => (
-              <Input
-                placeholder={formattedMessage}
-                size="small"
-                value={filters.orderId}
-                onChange={(e: FormEvent<HTMLInputElement>) =>
-                  handleOnChange('orderId', e.currentTarget.value)
-                }
-                readOnly={isDisabled && !isFiltering}
-              />
-            )}
-          </FormattedMessage>
+          <Input
+            placeholder={intl.formatMessage(messages.orderId)}
+            size="small"
+            value={filters.orderId}
+            onChange={(e: FormEvent<HTMLInputElement>) =>
+              handleOnChange('orderId', e.currentTarget.value)
+            }
+            readOnly={isDisabled && !isFiltering}
+          />
         </div>
         <div className="mh2">
-          <FormattedMessage id="store/return-app.return-request-list.table-filters.fromDate">
-            {(formattedMessage) => (
-              <DatePicker
-                maxDate={new Date()}
-                placeholder={formattedMessage}
-                locale="en-GB"
-                size="small"
-                onChange={(date: Date) =>
-                  handleOnChange('from', new Date(date).toISOString())
-                }
-                value={fromDate}
-                disabled={isDisabled && !isFiltering}
-              />
-            )}
-          </FormattedMessage>
+          <DatePicker
+            maxDate={new Date()}
+            placeholder={intl.formatMessage(messages.fromDate)}
+            locale="en-GB"
+            size="small"
+            onChange={(date: Date) =>
+              handleOnChange('from', new Date(date).toISOString())
+            }
+            value={fromDate}
+            disabled={isDisabled && !isFiltering}
+          />
         </div>
         <div className="mh2">
-          <FormattedMessage id="store/return-app.return-request-list.table-filters.toDate">
-            {(formattedMessage) => (
-              <DatePicker
-                maxDate={new Date()}
-                placeholder={formattedMessage}
-                locale="en-GB"
-                size="small"
-                onChange={(date: Date) =>
-                  handleOnChange('to', new Date(date).toISOString())
-                }
-                value={toDate}
-                disabled={isDisabled && !isFiltering}
-              />
-            )}
-          </FormattedMessage>
+          <DatePicker
+            maxDate={new Date()}
+            placeholder={intl.formatMessage(messages.toDate)}
+            locale="en-GB"
+            size="small"
+            onChange={(date: Date) =>
+              handleOnChange('to', new Date(date).toISOString())
+            }
+            value={toDate}
+            disabled={isDisabled && !isFiltering}
+          />
         </div>
         <div className="mh2">
           <StatusActionMenu
@@ -211,7 +223,7 @@ const ListTableFilter = (props: Props) => {
             type="submit"
             disabled={!hasSelectedFilters || loading}
           >
-            <FormattedMessage id="store/return-app.return-request-list.table-filters.apply-filters" />
+            {intl.formatMessage(messages.applyFilters)}
           </Button>
         </div>
         <div className="mh2">
@@ -221,7 +233,7 @@ const ListTableFilter = (props: Props) => {
             disabled={!isFiltering || loading}
             variation="danger"
           >
-            <FormattedMessage id="store/return-app.return-request-list.table-filters.clear-filters" />
+            {intl.formatMessage(messages.clearFilters)}
           </Button>
         </div>
       </div>

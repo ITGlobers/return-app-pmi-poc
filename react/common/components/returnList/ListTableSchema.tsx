@@ -1,11 +1,39 @@
 import React from 'react'
-import { FormattedDate, FormattedMessage } from 'react-intl'
+import { FormattedDate, defineMessages, useIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { IconInfo, ButtonPlain, Tooltip } from 'vtex.styleguide'
 
 import { renderStatus } from '../RenderStatus'
 
+const messages = defineMessages({
+  returnId: {
+    id: 'admin/return-app.return-request-list.table-data.requestId',
+    defaultMessage: 'Return ID',
+  },
+  returnIdTooltip: {
+    id: 'admin/return-app.return-request-list.table-data.requestId.tooltip',
+    defaultMessage: 'Customers can see their request ID inside the request details',
+  },
+  sequenceNumber: {
+    id: 'store/return-app.return-request-list.table-data.sequenceNumber',
+    defaultMessage: 'Sequence Number',
+  },
+  orderId: {
+    id: 'store/return-app.return-request-list.table-data.orderId',
+    defaultMessage: 'Order ID',
+  },
+  createdDate: {
+    id: 'store/return-app.return-request-list.table-data.createdDate',
+    defaultMessage: 'Created Date',
+  },
+  status: {
+    id: 'store/return-app.return-request-list.table-data.status',
+    defaultMessage: 'Status',
+  },
+})
+
 const ReturnListSchema = () => {
+  const intl = useIntl()
   const {
     navigate,
     route: { domain },
@@ -27,16 +55,12 @@ const ReturnListSchema = () => {
     properties: {
       ...(isAdmin && {
         id: {
-          title: "test",
+          title: intl.formatMessage(messages.returnId),
           headerRenderer({ title }) {
             return (
               <div className="flex items-center">
                 {title}
-                <Tooltip
-                  label={
-                    <FormattedMessage id="admin/return-app.return-request-list.table-data.requestId.tooltip" />
-                  }
-                >
+                <Tooltip label={intl.formatMessage(messages.returnIdTooltip)}>
                   <span className="yellow pointer ml3 flex">
                     <IconInfo />
                   </span>
@@ -58,9 +82,7 @@ const ReturnListSchema = () => {
         },
       }),
       sequenceNumber: {
-        title: (
-          <FormattedMessage id="store/return-app.return-request-list.table-data.sequenceNumber" />
-        ),
+        title: intl.formatMessage(messages.sequenceNumber),
         minWidth: 100,
         ...(!isAdmin && {
           cellRenderer({ cellData, rowData }) {
@@ -73,15 +95,11 @@ const ReturnListSchema = () => {
         }),
       },
       orderId: {
-        title: (
-          <FormattedMessage id="store/return-app.return-request-list.table-data.orderId" />
-        ),
+        title: intl.formatMessage(messages.orderId),
         minWidth: 160,
       },
       createdIn: {
-        title: (
-          <FormattedMessage id="store/return-app.return-request-list.table-data.createdDate" />
-        ),
+        title: intl.formatMessage(messages.createdDate),
         cellRenderer({ cellData }) {
           return (
             <FormattedDate
@@ -95,9 +113,7 @@ const ReturnListSchema = () => {
         minWidth: 110,
       },
       status: {
-        title: (
-          <FormattedMessage id="store/return-app.return-request-list.table-data.status" />
-        ),
+        title: intl.formatMessage(messages.status),
         minWidth: 250,
         cellRenderer({ cellData }) {
           return renderStatus(cellData)
