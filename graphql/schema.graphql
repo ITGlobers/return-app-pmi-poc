@@ -52,7 +52,7 @@ type Query {
 }
 
 type Mutation {
-  createReturnRequest(returnRequest: ReturnRequestInput!): ReturnRequestCreated
+  createReturnRequest(returnRequest: ReturnRequestInput!): returnRequestCreated
     @withUserProfile
     @auth(scope: PUBLIC)
   saveReturnAppSettings(settings: ReturnAppSettingsInput!): Boolean
