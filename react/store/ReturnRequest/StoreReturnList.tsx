@@ -1,11 +1,12 @@
 import React from 'react'
 import { Button } from 'vtex.styleguide'
 import { ContentWrapper } from 'vtex.my-account-commons'
-import { FormattedMessage, defineMessages, useIntl } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
 import ListTable from '../../common/components/returnList/ListTable'
 import { useReturnRequestList } from '../../hooks/useReturnRequestList'
+import styles from './styles.css'
 
 const messages = defineMessages({
   titleId: {
@@ -26,14 +27,14 @@ export const StoreReturnList = () => {
   const { loading } = returnRequestData
 
   const headerContent = (
-    <div className={`${phone ? 'mt4' : 'mt2'}`}>
+    <div className={`${phone ? 'mt4' : 'mt2'} ${styles.headerContent}`}>
       <Button
         variation="primary"
         size="small"
         disabled={loading}
         href="#/my-returns/add-individual"
       >
-        New Individual Request
+        New Request By Product
       </Button>
       <Button
         variation="primary"
@@ -41,7 +42,7 @@ export const StoreReturnList = () => {
         disabled={loading}
         href="#/my-returns/add"
       >
-        <FormattedMessage id="store/return-app.return-request-list.page-header.cta" />
+        New Request By Order
       </Button>
     </div>
   )

@@ -36,6 +36,12 @@ interface ShippingReturnData {
   addressType: string
 }
 
+interface PaymentReturnData {
+  refundPaymentMethod: string
+  iban: string
+  accountHolderName: string
+}
+
 type MaybeGlobal<T> = T | null
 
 type GeoCoordinates = Array<MaybeGlobal<number>>
