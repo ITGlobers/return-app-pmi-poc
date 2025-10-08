@@ -129,7 +129,7 @@ export const itemDetailsSchema = ({
         return (
           <AlignItemRight>
             <FormattedNumber
-              value={cellData / 100}
+              value={cellData / 10000}
               style="currency"
               currency={currencyCode}
             />
@@ -151,7 +151,7 @@ export const itemDetailsSchema = ({
         return (
           <AlignItemRight>
             <FormattedNumber
-              value={cellData / 100}
+              value={cellData / 10000}
               style="currency"
               currency={currencyCode}
             />
@@ -175,7 +175,7 @@ export const itemDetailsSchema = ({
         return (
           <AlignItemRight>
             <FormattedNumber
-              value={((sellingPrice + tax) * quantity) / 100}
+              value={((sellingPrice + tax) * quantity) / 10000}
               style="currency"
               currency={currencyCode}
             />
